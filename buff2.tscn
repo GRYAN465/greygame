@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bdtci6jf245yf"]
+
+[ext_resource type="Script" uid="uid://dqild0sw1ny4a" path="res://buff2.gd" id="1_nt2la"]
+[ext_resource type="Texture2D" uid="uid://cijldax2sxqkv" path="res://myArt/Health.png" id="2_nt2la"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ngrbv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_nt2la")
+}],
+"loop": true,
+"name": &"heal-buff",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i25jf"]
+radius = 18.0
+
+[node name="BUFF2" type="Area2D" unique_id=259902798]
+script = ExtResource("1_nt2la")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1212565410]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_ngrbv")
+animation = &"heal-buff"
+frame_progress = 0.5199897
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1666940495]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_i25jf")
+
+[node name="Timer" type="Timer" parent="." unique_id=213177867]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

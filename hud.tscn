@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://dcb4k06qakq7l"]
+
+[ext_resource type="Script" uid="uid://x7pkycjmg8rx" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="FontFile" uid="uid://t2otn3js4al3" path="res://fonts/Xolonium-Regular.ttf" id="2_8sq4i"]
+[ext_resource type="Texture2D" uid="uid://b8c2lr4goedky" path="res://myArt/Icon-wet.png" id="3_1xsix"]
+[ext_resource type="Texture2D" uid="uid://cxabmiy60hufo" path="res://myArt/Icon-Cold.png" id="4_rftc2"]
+[ext_resource type="Texture2D" uid="uid://cgppoi55hlq82" path="res://myArt/Icon-Brun.png" id="5_61f8s"]
+[ext_resource type="Texture2D" uid="uid://cd2vwpthgkpq3" path="res://myArt/Icon-Elec.png" id="6_g10ll"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_64ctp"]
+action = &"start_game"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_8sq4i"]
+events = [SubResource("InputEventAction_64ctp")]
+
+[node name="HUD" type="CanvasLayer" unique_id=992167239]
+script = ExtResource("1_64ctp")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1895837866]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_right = 120.0
+offset_bottom = 240.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_8sq4i")
+theme_override_font_sizes/font_size = 64
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="Label" parent="." unique_id=1030821856]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -125.0
+offset_right = 240.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_8sq4i")
+theme_override_font_sizes/font_size = 64
+text = "Dodge the Creeps！"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="." unique_id=2049118344]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.0
+offset_top = 334.0
+offset_right = 95.0
+offset_bottom = 434.0
+grow_horizontal = 2
+grow_vertical = 2
+shortcut = SubResource("Shortcut_8sq4i")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=231992692]
+wait_time = 2.0
+one_shot = true
+
+[node name="GameUI" type="Control" parent="." unique_id=340209163]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 344.0
+offset_bottom = 498.0
+
+[node name="VFX" type="HBoxContainer" parent="GameUI" unique_id=1053584234]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 248.0
+offset_top = 635.0
+offset_right = 440.0
+offset_bottom = 680.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="WetIcon" type="TextureRect" parent="GameUI/VFX" unique_id=615133757]
+layout_mode = 2
+texture = ExtResource("3_1xsix")
+expand_mode = 2
+
+[node name="ColdIcon" type="TextureRect" parent="GameUI/VFX" unique_id=336430768]
+layout_mode = 2
+texture = ExtResource("4_rftc2")
+expand_mode = 2
+
+[node name="BurnIcon" type="TextureRect" parent="GameUI/VFX" unique_id=167333646]
+layout_mode = 2
+texture = ExtResource("5_61f8s")
+expand_mode = 2
+
+[node name="ElecIcon" type="TextureRect" parent="GameUI/VFX" unique_id=110309343]
+layout_mode = 2
+texture = ExtResource("6_g10ll")
+expand_mode = 2
+
+[node name="Bar" type="VBoxContainer" parent="GameUI" unique_id=1812324260]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 594.0
+offset_right = 386.0
+offset_bottom = 652.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HealthBar" type="ProgressBar" parent="GameUI/Bar" unique_id=563297042]
+modulate = Color(1, 0.24007177, 0.23029596, 1)
+layout_mode = 2
+max_value = 45.0
+
+[node name="EnergyBar" type="ProgressBar" parent="GameUI/Bar" unique_id=689685217]
+modulate = Color(0.031088807, 0.44645393, 0.99999994, 1)
+layout_mode = 2
+max_value = 80.0
+
+[node name="Rule" type="Button" parent="." unique_id=2044216002]
+offset_top = 1147.0
+offset_right = 83.0
+offset_bottom = 1186.0
+text = "规则"
+
+[node name="RulePanel" type="Panel" parent="." unique_id=1906171302]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_top = -960.0
+offset_right = 640.0
+offset_bottom = -242.0
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="RulePanel" unique_id=485730079]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 718.0
+text = "How to play？  
+wasd控制
+失败：角色初始有血量，遇到怪物会扣血，血量扣完后游戏结束。
+得分：每存活一秒加一分，击败怪物会得3分。
+水史莱姆（拾取物）：拾取后获得一个武器旋转在自身周围，可以
+对怪物造成伤害，同时赋予角色潮湿，每秒恢复一定能量。
+
+怪物：三种不同怪物血量，攻击，速度不同。可以施加不同状态
+火焰怪物伤害高，闪电怪物移速快，冰霜怪物防御强
+
+状态：
+燃烧：每秒造成伤害。+感电触发爆炸造成大量伤害
+寒冷：持续减速。+潮湿触发冻结
+感电：每秒扣除能量。+寒冷扣除速率增加
+潮湿：每秒恢复能量，潮湿下无法被燃烧
+
+技能：
+安辰大扫除(E)：对大范围敌人造成巨额伤害  消耗35能量
+不要打我(Q)：获得5秒护盾，期间不受伤害  消耗20能量
+已给路打油(R)：恢复一些生命值，期间速度加快  消耗40能量
+
+道具：
+攻击力++  标志色红色
+恢复生命   标志色绿色
+武器转速强化   标志色紫色
+
+虽然游戏很简单无聊，但是在工作的时候可以让你放松一下就太好了"
+justification_flags = 131
+
+[node name="Close" type="Button" parent="RulePanel" unique_id=918819667]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_bottom = 14.0
+grow_horizontal = 0
+text = "❌️"
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="pressed" from="Rule" to="." method="_on_rule_pressed"]
+[connection signal="pressed" from="RulePanel/Close" to="." method="_on_close_pressed"]

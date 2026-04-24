@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://l2xrsm873kne"]
+
+[ext_resource type="Script" uid="uid://nrtp4gr70lhe" path="res://special_mob.gd" id="1_5gy3w"]
+[ext_resource type="PackedScene" uid="uid://cqqjsepf2sdpv" path="res://mob.tscn" id="2_v03kw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucuiu"]
+
+[node name="SpecialMob" type="Node2D" unique_id=2112694725]
+script = ExtResource("1_5gy3w")
+mob_scene = ExtResource("2_v03kw")
+
+[node name="MobA" parent="." unique_id=1923768797 instance=ExtResource("2_v03kw")]
+
+[node name="MobB" parent="." unique_id=515785421 instance=ExtResource("2_v03kw")]
+
+[node name="Light" type="Line2D" parent="." unique_id=936708140]
+modulate = Color(1, 1, 0.19607843, 1)
+self_modulate = Color(1, 1, 0.14901961, 1)
+points = PackedVector2Array(87, 30)
+width = 7.0
+default_color = Color(0.9033765, 0.90175337, 7.70092e-07, 1)
+
+[node name="LightArea" type="Area2D" parent="." unique_id=368171369]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightArea" unique_id=1211619197]
+shape = SubResource("RectangleShape2D_ucuiu")
+
+[node name="Sprite2D" type="Sprite2D" parent="LightArea" unique_id=1787474988]
+
+[connection signal="area_entered" from="LightArea" to="." method="_on_light_area_area_entered"]
+[connection signal="body_entered" from="LightArea" to="." method="_on_light_area_body_entered"]

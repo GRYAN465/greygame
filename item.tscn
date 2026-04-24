@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://nsb5awde64i1"]
+
+[ext_resource type="Script" uid="uid://ct8f0ojepnirq" path="res://item.gd" id="1_kg5e7"]
+[ext_resource type="Texture2D" uid="uid://cxsuwy6g8txt0" path="res://myArt/Mob-water1.png" id="2_ys7tt"]
+[ext_resource type="Texture2D" uid="uid://88s3tb0tjp4d" path="res://myArt/Mob-water2.png" id="3_unjj8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7u88n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ys7tt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_unjj8")
+}],
+"loop": true,
+"name": &"water",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tfp68"]
+radius = 19.0
+height = 58.0
+
+[node name="Item" type="Area2D" unique_id=502046721]
+script = ExtResource("1_kg5e7")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=658053430]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_7u88n")
+animation = &"water"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2123365049]
+position = Vector2(-2, 1)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_tfp68")
+
+[node name="ItemTimr" type="Timer" parent="." unique_id=1735412648]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="ItemTimr" to="." method="_on_item_timr_timeout"]

@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bgukpy1g8awh"]
+
+[ext_resource type="Script" uid="uid://d1nje0oo3tf5y" path="res://attack.gd" id="1_63pi1"]
+[ext_resource type="Texture2D" uid="uid://ckdfnm6flj328" path="res://myArt/Attack.png" id="2_hqc8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7yfhp"]
+size = Vector2(15.999998, 132)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0c0jm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hqc8w")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}]
+
+[node name="Attack" type="Area2D" unique_id=740611723]
+collision_mask = 2
+script = ExtResource("1_63pi1")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1949631310]
+position = Vector2(23.999998, 1.9999989)
+rotation = 1.5707964
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_7yfhp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=508088910]
+position = Vector2(20.360596, -4.2835965)
+rotation = 1.5707964
+scale = Vector2(-0.39140218, 0.59868115)
+skew = 0.017453292
+sprite_frames = SubResource("SpriteFrames_0c0jm")
+animation = &"attack"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
